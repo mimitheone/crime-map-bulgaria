@@ -1,1 +1,37 @@
-<html><body><h1>Demo Map</h1></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Crime Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style> #map {position: absolute; top: 0; bottom: 0; right: 0; left: 0;} </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    var map = L.map('map').setView([42.7, 25.4], 7);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([43.2141, 27.9147]).addTo(map)
+        .bindPopup('2025-03-22 – Варна<br>35-годишен мъж убит с нож след скандал.');
+
+    L.marker([42.7074, 27.2539]).addTo(map)
+        .bindPopup('2025-04-07 – Айтос<br>Жена наръгала съпруга си след домашен спор.');
+
+    L.marker([42.1354, 24.7453]).addTo(map)
+        .bindPopup('2025-04-19 – Пловдив<br>Тяло на мъж открито в изоставен автомобил.');
+
+    L.marker([43.2178, 27.6005]).addTo(map)
+        .bindPopup('2025-05-05 – Девня<br>Мъж убил съсед заради междусъседски конфликт.');
+
+    L.marker([42.6595, 27.7365]).addTo(map)
+        .bindPopup('2025-06-01 – Несебър<br>Открито тяло на жена на плажа – разследването продължава.');
+</script>
+</body>
+</html>
