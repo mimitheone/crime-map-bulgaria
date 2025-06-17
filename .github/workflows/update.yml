@@ -2,8 +2,8 @@ name: Update Crime Map Data
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # Всеки ден в 02:00 българско време (23:00 UTC)
-  workflow_dispatch:      # Позволява ръчно стартиране
+    - cron: '0 23 * * *'  # Всеки ден в 02:00 българско време (23:00 UTC)
+  workflow_dispatch:
 
 jobs:
   update-data:
@@ -28,14 +28,17 @@ jobs:
         python scripts/extract_cases.py
         python scripts/geocode.py
 
+    - name: Copy map to docs
+      run: cp map/interactive_map.html docs/
+
     - name: Commit updated data 
       run: |
         git config user.name "github-actions"
         git config user.email "github-actions@github.com"
-        git add data/*.csv map/interactive_map.html || true
-         if git diff --cached --quiet; then
-           echo "No changes to commit."
-         else
-           git commit -m "Automated update of crime data"
-           git push
-         fi
+        git add data/*.csv map/interactive_map.html docs/interactive_map.html || true
+        if git diff --cached --quiet; then
+          echo "No changes to commit."
+        else
+          git commit -m "Automated update of crime data"
+          git push
+        fi
