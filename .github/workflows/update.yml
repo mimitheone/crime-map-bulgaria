@@ -31,6 +31,9 @@ jobs:
     - name: Copy map to docs
       run: cp map/interactive_map.html docs/
 
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+  
     - name: Commit updated data 
       run: |
         git config user.name "github-actions"
