@@ -2,7 +2,11 @@ import os
 import re
 import csv
 from bs4 import BeautifulSoup
+import json
 
+with open("docs/data/crimes.json", "w", encoding="utf-8") as f:
+    json.dump(cases, f, ensure_ascii=False, indent=2)
+    
 bulletin_dir = "data/bulletins"
 output_file = "data/cases.csv"
 
