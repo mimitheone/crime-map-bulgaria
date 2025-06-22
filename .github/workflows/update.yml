@@ -12,7 +12,15 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
 
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+      
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -27,9 +35,6 @@ jobs:
         python scripts/fetch_bulletins.py
         python scripts/extract_cases.py
         python scripts/geocode.py
-
-    - name: Copy map to docs
-      run: cp map/interactive_map.html docs/
 
     - name: Install dependencies
       run: pip install -r requirements.txt
